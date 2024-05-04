@@ -1,0 +1,45 @@
+import random
+
+class Player:
+    def __init__(self):
+        self.hunger = 100
+        self.thirst = 100
+        self.energy = 100
+
+class Island:
+    def __init__(self):
+        self.locations = ["Beach", "Jungle", "Caves"]
+    
+    def explore(self):
+        return random.choice(self.locations)
+
+def main():
+    player = Player()
+    island = Island()
+
+    print("You find yourself stranded on a deserted island after a shipwreck.")
+    print("Your goal is to survive and eventually find a way to escape the island.")
+
+    while True:
+        print("\n[STATS] Hunger: {}, Thirst: {}, Energy: {}".format(player.hunger, player.thirst, player.energy))
+        action = input("What would you like to do? (explore/rest/quit): ").lower()
+
+        if action == "explore":
+            location = island.explore()
+            print("You explore the", location)
+            # Implement resource gathering, encounters, etc. based on location
+        elif action == "rest":
+            player.hunger -= 10
+            player.thirst -= 10
+            player.energy += 20
+            print("You rest and regain some energy.")
+        elif action == "quit":
+            print("Goodbye! Thanks for playing!")
+            break
+        else:
+            print("Invalid action. Please choose explore, rest, or quit.")
+
+if __name__ == "__main__":
+    main()
+
+
